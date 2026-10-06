@@ -1,0 +1,39 @@
+import java.util.function.Function;
+
+public class Pogoda {
+
+    static double srednia(double[] temperatury) {
+        double sum = 0;
+        for (double temp : temperatury) {
+            sum += temp;
+        }
+        return sum / temperatury.length;
+    }
+    static String opis(double stopnieC) {
+        if (stopnieC < 10) {
+            return "zimno";
+        } else if (stopnieC < 20) {
+            return "umiarkowanie";
+        } else {
+            return "ciepło";
+        }
+    }
+    static void wypisz(double[] temperatury, Function<Double, Double> przelicznik, String jednostka) {
+        for (int i = 0; i < temperatury.length; i++) {
+            double cels = temperatury[i];
+            double przel = przelicznik.apply(cels);
+            String desc = opis(cels);
+            System.out.printf("Dzien %d: %.1f %s - %s\n", (i + 1), przel, jednostka, desc);
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        double[] temperatury = {12.5, 15.0, 8.5, 18.0, 21.5, 17.0, 9.5};
+         System.out.printf("Temperatury w C°");
+        wypisz(temperatury, c -> c, "C°");
+        System.out.printf("Temperatury w F°");
+        wypisz(temperatury, c -> c * 9.0 / 5.0 + 32.0, "°F");
+        System.out.printf("Srednia temperatura: %.1f C°\n", srednia(temperatury));
+    }
+}
