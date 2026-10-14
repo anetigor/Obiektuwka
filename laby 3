@@ -1,1 +1,55 @@
+Ksiazka.java
+public class Ksiazka {
+    private String tytul;
+    private String autor;
+    private int liczbaStron;
 
+    public Ksiazka(String tytul, String autor, int liczbaStron) {
+        this.tytul = tytul;
+        this.autor = autor;
+        this.liczbaStron = liczbaStron;
+    }
+
+    public String getTytul() {
+        return tytul;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public int getLiczbaStron() {
+        return liczbaStron;
+    }
+
+    public void setLiczbaStron(int liczbaStron) {
+        if (liczbaStron > 0) {
+            this.liczbaStron = liczbaStron;
+        } else {
+            System.out.println("Niepoprawna liczba stron: " + liczbaStron);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Ksiazka{tytul='" + tytul + "', autor='" + autor + "', liczbaStron=" + liczbaStron + "}";
+    }
+} 
+
+
+Main.java
+
+
+public class Main {
+    public static void main(String[] args) {
+        Ksiazka ksiazka = new Ksiazka("Pan Tadeusz", "Adam Mickiewicz", 344);
+
+        System.out.println("Tytuł: " + ksiazka.getTytul());
+        System.out.println("Autor: " + ksiazka.getAutor());
+
+        ksiazka.setLiczbaStron(-5);
+        ksiazka.setLiczbaStron(352);
+
+        System.out.println(ksiazka);
+    }
+}
