@@ -1,0 +1,15 @@
+import java.lang.ref.WeakReference;
+
+public class SlabaReferencja {
+    public static void main(String[] args) {
+        String raport = new String("Raport z laboratorium");
+        WeakReference<String> slaba = new WeakReference<>(raport);
+        
+        System.gc();
+        System.out.println("1. Silna referencja istnieje: " + slaba.get());
+        
+        raport = null;
+        System.gc();
+        System.out.println("2. Po usunięciu silnej referencji: " + slaba.get());
+    }
+}
